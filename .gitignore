@@ -1,0 +1,5 @@
+/sdk/command/vendor/nodejs/node_modules/.bin/
+/sdk/command/vendor/nodejs/node_modules/jasmine-node/node_modules/.bin/
+.sass-cache/
+packager.temp.json
+resources/jwplayer/*
