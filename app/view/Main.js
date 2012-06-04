@@ -3,7 +3,8 @@ Ext.define("BS.view.Main", {
     requires: [
         'Ext.TitleBar',
         'Ext.Video',
-        'BS.view.jwplayer.Base'
+        'BS.view.jwplayer.Base',
+        'BS.view.IframeVideo'
     ],
     config: {
         tabBarPosition: 'bottom',
@@ -29,7 +30,7 @@ Ext.define("BS.view.Main", {
                 ].join("")
             },
             {
-                title: 'Get Started',
+                title: 'Ext.Video',
                 iconCls: 'action',
 
                 items: [
@@ -46,7 +47,7 @@ Ext.define("BS.view.Main", {
                 ]
             },
             {
-                title: 'JW Player',
+                title: 'JW Video',
                 iconCls: 'action',
 //                layout: {
 //                    type: 'vbox',
@@ -65,7 +66,8 @@ Ext.define("BS.view.Main", {
                         playerOptions: {
                             file: 'http://www.longtailvideo.com/jw/upload/bunny.mp4',
                             image: 'http://www.longtailvideo.com/jw/upload/bunny.jpg',
-                            width: 320 // set a width otherwise the video controls do not show on a smaller phone
+                            width: 320, // set a width otherwise the video controls do not show on a smaller phone
+                            height: 180
                         }
                     }
                 ],
@@ -85,6 +87,59 @@ Ext.define("BS.view.Main", {
                     }
                 }
             },
+            {
+                title: 'JW Youtube',
+                iconCls: 'action',
+//                layout: {
+//                    type: 'vbox',
+//                    pack: 'center',
+//                    align: 'center'
+//                },
+
+                items: [
+                    {
+                        docked: 'top',
+                        xtype: 'titlebar',
+                        title: 'JW Player Youtube example'
+                    },
+                    {
+                        xtype: 'jwplayer',
+                        playerOptions: {
+                            file: 'http://www.youtube.com/watch?v=YE7VzlLtp-4',
+                            image: 'http://www.longtailvideo.com/jw/upload/bunny.jpg',
+                            width: 320, // set a width otherwise the video controls do not show on a smaller phone,
+                            height: 180,
+                            controlbar: 'none',
+                            events: {
+                                onReady: function() {
+                                    if (Ext.os.is.iOS) {
+                                        this.play();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                title: 'Youtube',
+                iconCls: 'action',
+
+                items: [
+                    {
+                        docked: 'top',
+                        xtype: 'titlebar',
+                        title: 'Youtube embed example'
+                    },
+                    {
+                        xtype: 'iframevideo',
+                        data: {
+                            video_host: 'youtube',
+                            video_id: 'YE7VzlLtp-4'
+                        }
+                    }
+                ]
+            }
         ]
     }
 });

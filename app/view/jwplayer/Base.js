@@ -124,9 +124,9 @@ Ext.define('BS.view.jwplayer.Base', {
     onActivate: function() {
         var me = this;
 
-//        if (me.getAutoResume() && !me.isPlaying()) {
-//            me.play();
-//        }
+        if (me.getAutoResume() && !me.isPlaying()) {
+            me.play();
+        }
     },
 
     // @private
