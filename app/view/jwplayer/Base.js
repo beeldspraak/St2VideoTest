@@ -1,6 +1,6 @@
 Ext.define('BS.view.jwplayer.Base', {
     extend: 'Ext.Container',
-    xtype: 'jwplayer',
+    alias: 'widget.jwplayer',
 
     config: {
         /**
@@ -39,7 +39,9 @@ Ext.define('BS.view.jwplayer.Base', {
          * Will automatically start playing the media when the container is activated.
          * @accessor
          */
-        autoResume: false
+        autoResume: false,
+
+        layout: 'fit'
     },
 
     constructor: function() {

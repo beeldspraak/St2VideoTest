@@ -4,7 +4,8 @@ Ext.define("BS.view.Main", {
         'Ext.TitleBar',
         'Ext.Video',
         'BS.view.jwplayer.Base',
-        'BS.view.IframeVideo'
+        'BS.view.IframeVideo',
+        'BS.view.CombinedVideo'
     ],
     config: {
         tabBarPosition: 'bottom',
@@ -88,58 +89,91 @@ Ext.define("BS.view.Main", {
                 }
             },
             {
-                title: 'JW Youtube',
+                title: 'JW / Ext.Video',
                 iconCls: 'action',
-//                layout: {
-//                    type: 'vbox',
-//                    pack: 'center',
-//                    align: 'center'
-//                },
+                layout: 'fit',
 
                 items: [
                     {
                         docked: 'top',
                         xtype: 'titlebar',
-                        title: 'JW Player Youtube example'
+                        title: 'Ext.Video (iOS) / JW'
                     },
                     {
-                        xtype: 'jwplayer',
-                        playerOptions: {
-                            file: 'http://www.youtube.com/watch?v=YE7VzlLtp-4',
-                            image: 'http://www.longtailvideo.com/jw/upload/bunny.jpg',
-                            width: 320, // set a width otherwise the video controls do not show on a smaller phone,
-                            height: 180,
-                            controlbar: 'none',
-                            events: {
-                                onReady: function() {
-                                    if (Ext.os.is.iOS) {
-                                        this.play();
-                                    }
-                                }
-                            }
-                        }
+                        xtype: 'combinedvideo',
+                        url: 'http://www.longtailvideo.com/jw/upload/bunny.mp4',
+                        posterUrl: 'http://www.longtailvideo.com/jw/upload/bunny.jpg'
                     }
-                ]
-            },
-            {
-                title: 'Youtube',
-                iconCls: 'action',
+                ],
 
-                items: [
-                    {
-                        docked: 'top',
-                        xtype: 'titlebar',
-                        title: 'Youtube embed example'
+                listeners: {
+                    activate: function() {
+                        var me = this,
+                            player = me.down('combinedvideo');
+
+                        player.fireEvent('activate', me);
                     },
-                    {
-                        xtype: 'iframevideo',
-                        data: {
-                            video_host: 'youtube',
-                            video_id: 'YE7VzlLtp-4'
-                        }
+                    deactivate: function() {
+                        var me = this,
+                            player = me.down('combinedvideo');
+
+                        player.fireEvent('deactivate', me);
                     }
-                ]
+                }
             }
+//            {
+//                title: 'JW Youtube',
+//                iconCls: 'action',
+////                layout: {
+////                    type: 'vbox',
+////                    pack: 'center',
+////                    align: 'center'
+////                },
+//
+//                items: [
+//                    {
+//                        docked: 'top',
+//                        xtype: 'titlebar',
+//                        title: 'JW Player Youtube example'
+//                    },
+//                    {
+//                        xtype: 'jwplayer',
+//                        playerOptions: {
+//                            file: 'http://www.youtube.com/watch?v=YE7VzlLtp-4',
+//                            image: 'http://www.longtailvideo.com/jw/upload/bunny.jpg',
+//                            width: 320, // set a width otherwise the video controls do not show on a smaller phone,
+//                            height: 180,
+//                            controlbar: 'none',
+//                            events: {
+//                                onReady: function() {
+//                                    if (Ext.os.is.iOS) {
+//                                        this.play();
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                ]
+//            },
+//            {
+//                title: 'Youtube',
+//                iconCls: 'action',
+//
+//                items: [
+//                    {
+//                        docked: 'top',
+//                        xtype: 'titlebar',
+//                        title: 'Youtube embed example'
+//                    },
+//                    {
+//                        xtype: 'iframevideo',
+//                        data: {
+//                            video_host: 'youtube',
+//                            video_id: 'YE7VzlLtp-4'
+//                        }
+//                    }
+//                ]
+//            }
         ]
     }
 });
