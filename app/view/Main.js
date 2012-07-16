@@ -101,8 +101,8 @@ Ext.define("BS.view.Main", {
                     },
                     {
                         xtype: 'combinedvideo',
-                        url: 'http://www.longtailvideo.com/jw/upload/bunny.mp4',
-                        posterUrl: 'http://www.longtailvideo.com/jw/upload/bunny.jpg'
+                        url: 'http://content.bitsontherun.com/videos/bkaovAYt-364766.mp4',
+                        posterUrl: 'http://s0-www.ltvimg.com/v3_6_4/images/jw-player/bkaovAYt-480.jpg'
                     }
                 ],
 
